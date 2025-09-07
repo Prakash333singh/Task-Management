@@ -162,23 +162,24 @@ const Dashboard = () => {
               <p className="text-gray-600 mb-4">No tasks found</p>
               <Link
                 to="/tasks/new"
-                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+                className="bg-blue-600 text-white px-4 sm:px-6 py-2 rounded-lg hover:bg-blue-700 transition block w-full sm:w-auto"
               >
                 Create your first task
               </Link>
             </div>
           ) : (
             <>
-              <div className="divide-y divide-gray-500">
+              <div className="divide-y divide-gray-400 by-2 bx-4 gap-2">
                 {tasks.map((task) => (
                   <div
                     key={task._id}
-                    className="p-6 hover:bg-gray-50 transition rounded-xl"
+                    className="p-4 sm:p-6 hover:bg-gray-50 transition rounded-xl"
                   >
-                    <div className="flex items-start justify-between">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                      {/* Task info */}
                       <div>
-                        <div className="flex items-center gap-3 mb-2">
-                          <h3 className="text-lg font-semibold text-gray-900">
+                        <div className="flex flex-wrap items-center gap-2 mb-2">
+                          <h3 className="text-base sm:text-lg font-semibold text-gray-900">
                             {task.title}
                           </h3>
                           <span
@@ -191,16 +192,20 @@ const Dashboard = () => {
                           </span>
                         </div>
                         {task.description && (
-                          <p className="text-gray-600 mb-2">{task.description}</p>
+                          <p className="text-gray-600 text-sm sm:text-base mb-2">
+                            {task.description}
+                          </p>
                         )}
-                        <p className="text-sm text-gray-500">
+                        <p className="text-xs sm:text-sm text-gray-500">
                           Created: {formatDate(task.createdAt)}
                         </p>
                       </div>
-                      <div className="flex gap-2 ml-4">
+
+                      {/* Action buttons */}
+                      <div className="flex flex-wrap sm:flex-nowrap gap-2">
                         <button
                           onClick={() => handleToggleStatus(task._id, task.status)}
-                          className={`px-4 py-1 text-sm rounded-lg transition ${task.status === "done"
+                          className={`flex-1 sm:flex-none px-3 sm:px-4 py-1 text-sm rounded-lg transition ${task.status === "done"
                               ? "bg-yellow-100 text-yellow-800 hover:bg-yellow-200"
                               : "bg-green-100 text-green-800 hover:bg-green-200"
                             }`}
@@ -209,14 +214,14 @@ const Dashboard = () => {
                         </button>
                         <Link
                           to={`/tasks/${task._id}/edit`}
-                          className="px-4 py-1 text-sm bg-blue-100 text-blue-800 rounded-lg hover:bg-blue-200 transition"
+                          className="flex-1 sm:flex-none px-3 sm:px-4 py-2 text-sm text-center bg-blue-100 text-blue-800 rounded-lg hover:bg-blue-200 transition"
                         >
                           Edit
                         </Link>
                         <button
                           onClick={() => handleDeleteTask(task._id)}
                           disabled={deletingTask === task._id}
-                          className="px-4 py-1 text-sm bg-red-100 text-red-800 rounded-lg hover:bg-red-200 transition disabled:opacity-50"
+                          className="flex-1 sm:flex-none px-3 sm:px-4 py-1 text-sm bg-red-100 text-red-800 rounded-lg hover:bg-red-200 transition disabled:opacity-50"
                         >
                           {deletingTask === task._id ? "Deleting..." : "Delete"}
                         </button>
@@ -228,8 +233,8 @@ const Dashboard = () => {
 
               {/* Pagination */}
               {pagination.totalPages > 1 && (
-                <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
-                  <p className="text-sm text-gray-700">
+                <div className="px-4 sm:px-6 py-4 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-3">
+                  <p className="text-sm text-gray-700 text-center sm:text-left">
                     Showing {tasks.length} of {pagination.totalTasks} tasks
                   </p>
                   <div className="flex gap-2">
@@ -239,7 +244,7 @@ const Dashboard = () => {
                         fetchTasks(currentPage - 1, searchTerm, statusFilter)
                       }}
                       disabled={!pagination.hasPrev}
-                      className="px-4 py-1 text-sm border border-gray-300 rounded-lg hover:bg-gray-100 disabled:opacity-50"
+                      className="px-3 py-1 text-sm border border-gray-300 rounded-lg hover:bg-gray-100 disabled:opacity-50"
                     >
                       Previous
                     </button>
@@ -252,7 +257,7 @@ const Dashboard = () => {
                         fetchTasks(currentPage + 1, searchTerm, statusFilter)
                       }}
                       disabled={!pagination.hasNext}
-                      className="px-4 py-1 text-sm border border-gray-300 rounded-lg hover:bg-gray-100 disabled:opacity-50"
+                      className="px-3 py-1 text-sm border border-gray-300 rounded-lg hover:bg-gray-100 disabled:opacity-50"
                     >
                       Next
                     </button>
@@ -262,6 +267,7 @@ const Dashboard = () => {
             </>
           )}
         </div>
+
       </div>
     </div>
   )

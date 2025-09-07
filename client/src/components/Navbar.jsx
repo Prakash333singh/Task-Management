@@ -1,4 +1,3 @@
-import React from "react"
 import { Link } from "react-router-dom"
 import { useAuth } from "../contexts/AuthContext"
 
@@ -12,7 +11,7 @@ const Navbar = () => {
           {/* Brand */}
           <Link
             to="/dashboard"
-            className="text-2xl font-extrabold tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600"
+            className="text-xl lg:text-2xl font-extrabold tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600"
           >
             Task Manager
           </Link>
@@ -34,9 +33,9 @@ const Navbar = () => {
                 {/* New Task button */}
                 <Link
                   to="/tasks/new"
-                  className="px-4 py-2 rounded-full text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 shadow-lg transition-all duration-200"
+                  className="px-4 py-2 sm:px-6 md:px-8 rounded-full text-xs sm:text-sm md:text-base font-medium text-white bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 shadow-lg transition-all duration-200 whitespace-nowrap"
                 >
-                  + New Task
+                  Add Task
                 </Link>
 
                 {/* Logout button */}

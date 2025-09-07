@@ -78,7 +78,7 @@ A full-stack task management application built with React, Node.js, Express, and
 6. **Access the application**
    
    - Frontend: http://localhost:3000
-   - Backend API: https://task-management-iota-sandy.vercel.app/
+   - Backend API: http://localhost:5000/
 
 ## API Endpoints
 
