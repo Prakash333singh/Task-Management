@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
     const checkAuth = async () => {
       if (token) {
         try {
-          const response = await axios.get("http://localhost:5000/api/auth/me")
+          const response = await axios.get("https://task-management-iota-sandy.vercel.app/api/auth/me")
           setUser(response.data.user)
         } catch (error) {
           console.error("Auth check failed:", error)
@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/login", { email, password })
+      const response = await axios.post("https://task-management-iota-sandy.vercel.app/api/auth/login", { email, password })
       console.log("Login response:", response.data)
       const { token: newToken, user: userData } = response.data
 
@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (email, password) => {
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/register", {
+      const response = await axios.post("https://task-management-iota-sandy.vercel.app/api/auth/register", {
         email,
         password,
       })

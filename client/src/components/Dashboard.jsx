@@ -15,7 +15,7 @@ const Dashboard = () => {
   const fetchTasks = async (page = 1, search = "", status = "") => {
     try {
       setLoading(true)
-      const response = await axios.get("http://localhost:5000/api/tasks", {
+      const response = await axios.get("https://task-management-iota-sandy.vercel.app/api/tasks", {
         params: { page, limit: 10, search, status },
       })
       setTasks(response.data.tasks)
@@ -50,7 +50,7 @@ const Dashboard = () => {
 
     try {
       setDeletingTask(taskId)
-      await axios.delete(`http://localhost:5000/api/tasks/${taskId}`)
+      await axios.delete(`https://task-management-iota-sandy.vercel.app/api/tasks/${taskId}`)
       fetchTasks(currentPage, searchTerm, statusFilter)
     } catch (err) {
       setError("Failed to delete task")
@@ -63,7 +63,7 @@ const Dashboard = () => {
   const handleToggleStatus = async (taskId, currentStatus) => {
     try {
       const newStatus = currentStatus === "pending" ? "done" : "pending"
-      await axios.put(`http://localhost:5000/api/tasks/${taskId}`, { status: newStatus })
+      await axios.put(`https://task-management-iota-sandy.vercel.app/api/tasks/${taskId}`, { status: newStatus })
       fetchTasks(currentPage, searchTerm, statusFilter)
     } catch (err) {
       setError("Failed to update task status")
